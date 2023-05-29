@@ -1,0 +1,105 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Farm Central Stock Management</h1>
+</div>
+
+<hr />
+
+<div class="row">
+
+    @if(User.Identity.IsAuthenticated)
+     {
+ 
+
+      if (User.IsInRole("Admin"))
+       {
+        <div class="col-md-4">
+            <h2>Products</h2>
+            <p>
+                This gives you a an easy way to add new products after shipment. You can also view the list of products available.
+            </p>
+            <p><a class="btn btn-outline-warning" href="Product_List">Products &raquo;</a></p>
+        </div>
+
+        <div class="col-md-4">
+            <h2>Product Type</h2>
+            <p>This allows you to add, view, and delete the product types.</p>
+            <p><a class="btn btn-outline-success" href="Product_Type">Product Types &raquo;</a></p>
+        </div>
+
+        <div class="col-md-4">
+            <h2>Farmers</h2>
+            <p>This makes it easy to add, remove, and update Farmers in the database.</p>
+            <p><a class="btn btn-outline-primary" fdprocessedid="hgih0f" href="Farmers">Farmers &raquo;</a></p>
+        </div>
+
+        <div class="col-md-4">
+            <h2>Employees</h2>
+            <p>You can easily add new Employees to your application database.</p>
+            <p><a class="btn btn-outline-warning" href="Employees">Employees &raquo;</a></p>
+        </div>
+
+        <div class="col-md-4">
+            <h2>Employee Type</h2>
+            <p>You can easily new types of employees to your application database.</p>
+            <p><a class="btn btn-outline-success" href="Employee_Type">Employee Type &raquo;</a></p>
+        </div>
+
+        <div class="col-md-4">
+            <h2>User Roles</h2>
+            <p>You can add or edit user Roles in your application database.</p>
+            <p><a class="btn btn-outline-primary" fdprocessedid="hgih0f" href="User_Roles">Roles &raquo;</a></p>
+        </div>
+
+        <div class="col-md-4">
+            <h2>Assign Roles</h2>
+            <p>You can assign user Roles to existing users to give/monitor them access to certain links in your application.</p>
+            <p><a class="btn btn-outline-warning" href="UserRoleMappings">Assign &raquo;</a></p>
+        </div>
+    }
+    else
+    {
+        if (User.IsInRole("Employee"))
+        {
+            <div class="col-md-4">
+                <h2>Farmers</h2>
+                <p>This makes it easy to add, remove, and update Farmers in the database.</p>
+                <p><a class="btn btn-outline-primary" fdprocessedid="hgih0f" href="Farmers">Farmers &raquo;</a></p>
+            </div>
+
+            <div class="col-md-4">
+                <h2>Products</h2>
+                <p>
+                    This gives you a an easy way to add new products after shipment. You can also view the list of products available.
+                </p>
+                <p><a class="btn btn-outline-warning" href="Product_List">Products &raquo;</a></p>
+            </div>
+        }
+        else
+        {
+            if (User.IsInRole("Farmer"))
+            {
+                <div class="col-md-4">
+                    <h2>Products</h2>
+                    <p>
+                        This gives you a an easy way to add new products after shipment. You can also view the list of products available.
+                    </p>
+                    <p><a class="btn btn-outline-warning" href="Product_List">Products &raquo;</a></p>
+                </div>
+
+                <div class="col-md-4">
+                    <h2>Product Type</h2>
+                    <p>This allows you to add, view, and delete the product types.</p>
+                    <p><a class="btn btn-outline-success" href="Product_Type">Product Types &raquo;</a></p>
+                </div>
+            }
+        }
+
+     }
+    }
+
+
+</div>

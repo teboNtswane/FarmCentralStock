@@ -1,0 +1,129 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Farm Central Stock Management</title>
+    @Styles.Render("~/Content/bootsWatchTheme.css")
+<link href="~/Content/customStyleSheet.css" rel="stylesheet" />
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+
+            <a class="navbar-brand" href="#">
+                <img src="~/Images/FarmIMG.jpg" width="30" height="30" />
+                Farm Central Stock Management
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav me-auto">
+
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+
+
+                        if (User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" href="Home">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="Farmers">Farmers</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="Employees">Employees</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="Product_Type">Product Type</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="Product_List">Product List</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="User_Role">User Roles</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="UserRoleMappings">Assign Roles</a>
+                            </li>
+                        }
+                        else
+                        {
+                            if (User.IsInRole("Employee"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" href="Home">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="Farmers">Farmers</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="Product_List">Product List</a>
+                                </li>
+                            }
+                            else
+                            {
+                                if (User.IsInRole("Farmer"))
+                                {
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="Home">Home</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="Product_Type">Product Type</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="Product_List">Product List</a>
+                                    </li>
+                                }
+                            }
+                        }
+
+                        <li class="nav-item"><a><p>Hello,  @User.Identity.Name </p></a></li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Accounts/Logout">Logout</a>
+                        </li>
+
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="Accounts/Login">Login</a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <footer>
+        <div id="footer1" classs="container-fluid">
+            <div class="row">
+                @RenderBody()
+                <hr />
+          
+                    <p>&copy; @DateTime.Now.Year - Farm Central Stock Management</p>
+                
+            </div>
+        </div>
+        <div id="footer2" class="container-fluid">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 text-center">
+                    <p style="color:whitesmoke">&copy All Right Reserved. </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer -->
+
+    @Scripts.Render("~/bundles/jquery")
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
